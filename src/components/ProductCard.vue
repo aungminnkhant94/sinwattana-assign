@@ -22,7 +22,7 @@
                     <label>Price:</label>
                   </div>
                   <div class="cell">
-                    $4.82
+                    {{ product.pirce }}
                   </div>
                 </div>
                 <div class="row">
@@ -30,13 +30,14 @@
                     <label>Quantity:</label>
                   </div>
                   <div class="cell">
-                    <input type="number" value="0">
+                    <input type="number" v-model.number="quantity">
                   </div>
                 </div>
               </form>
             </div>
             <div class="card-footer">
-              <button class="btn btn-light">Add to cart</button>
+              <button @click="addToCart(product.product, quantity)" class="btn btn-light">
+                Add to cart</button>
             </div>
           </div>
 

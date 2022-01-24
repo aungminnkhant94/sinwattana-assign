@@ -39,16 +39,16 @@ export default {
     }
   },
   methods: {
-    addToCart(name, quantity) {
-      if(!this.cart[name]) this.cart[name] = 0
-      this.cart[name] += quantity
+    addToCart(product, quantity) {
+      if(!this.cart[product]) this.cart[product] = 0
+      this.cart[product] += quantity
       // console.log(this.cart)
     },
     toggleSidebar() {
       this.showSideBar = !this.showSideBar
     },
-    removeItem(name) {
-      delete this.cart[name]
+    removeItem(product) {
+      delete this.cart[product]
     }
   }
 }

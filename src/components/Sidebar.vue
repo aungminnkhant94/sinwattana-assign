@@ -13,7 +13,6 @@
           <table class="cart-table">
             <thead>
               <tr>
-                <th><span class="sr-only">Product Image</span></th>
                 <th>Product</th>
                 <th>Price</th>
                 <th>Qty</th>
@@ -22,24 +21,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(quantity, name, index, product) in cart" :key="index">
-                <td><i class="icofont-carrot icofont-3x"></i></td>
-                <td>{{ product.product }}</td>
-                <td>${{ getPrice(name) }}</td>
+              <tr v-for="(quantity, key, i) in cart" :key="i">
+                <td>{{ key }}</td>
+                <td>${{ getPrice(key) }}</td>
                 <td class="center">{{ quantity }} </td>
-                <td>${{ quantity * getPrice(name) }}</td>
+                <td>${{ quantity * getPrice(key) }}</td>
                 <td class="center">
-                  <button @click="remove(name)" class="btn btn-light cart-remove">
+                  <button @click="remove(key)" class="btn btn-light cart-remove">
                     &times;
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
-
+          <br>
           <p class="center" v-if="!Object.keys(cart).length"><em>No items in cart</em></p>
           <div class="spread">
-            <span><strong>Total:</strong> ${{ calculateTotal(key) }}</span>
+            <span><strong>Total:</strong> ${{ calculateTotal() }}</span>
             <button class="btn btn-light">Checkout</button>
           </div>
         </div>
@@ -52,10 +50,10 @@
     props: ['toggle', 'cart', 'inventory', 'remove'],
     methods: {
       getPrice(product) {
-        const product = this.inventory.find((p) => {
+        const pet = this.inventory.find((p) => {
           return p.product === product
         })
-        return product.pirce
+        return pet.pirce
       },
       calculateTotal() {
         const total = Object.entries(this.cart).reduce((acc, curr) => {
